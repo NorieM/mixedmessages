@@ -1,15 +1,25 @@
-const axios = require('axios').default;
 
+const fetch = require('node-fetch');
 
-const getRandomIntBetween = (min=0, max) => {
-  return Math.floor(Math.Random * (max-min) + min);
+const url = 'https://type.fit/api/quotes';
+
+async function getBlock() {
+  let alLQuotes;
+  try {
+    var response = await fetch(url);
+    allQuotes = await response.json();
+    getRandomQuote(allQuotes);
+  } catch (e) {
+    console.error(e)
+  }
 }
 
+getBlock();
 
-let quotes = axios('https://type.fit/api/quotes') 
-  .then(function (response) {
-    // handle success
-    quotes = response;
-  })
-
-console.log(quotes);
+const getRandomQuote = (quotes) => {
+  if (quotes){
+    const idx = Math.floor(Math.random() * quotes.length);
+    console.log(quotes[idx]['text']);
+    console.log(quotes[idx]['author']);
+  }
+}
