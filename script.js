@@ -17,7 +17,7 @@ async function getBlock() {
 getBlock();
 
 const getRandomQuote = (quotes) => {
-  if (quotes){
+  if (quotes) {
     const idx = Math.floor(Math.random() * quotes.length);
     console.log(quotes[idx]['text']);
     console.log(quotes[idx]['author']);
